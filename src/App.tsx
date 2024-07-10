@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Cards from "./components/Cards";
+import Btn from "./components/Btn";
+import RoundGoal from "./components/RoundGoal";
+
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #eb5b00;
+  box-sizing: border-box;
+  padding-top: 100px;
+`;
+const Heading = styled.h1`
+  color: white;
+  font-size: 42px;
+  text-align: center;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Heading>Pomodoro</Heading>
+      <Cards />
+      <Btn />
+      <RoundGoal />
+    </Wrapper>
   );
 }
 
