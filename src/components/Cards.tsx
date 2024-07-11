@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useRecoilValue } from "recoil";
+import { secondState, minuteState } from "../atoms";
+import { memo } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -6,7 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 50px;
 `;
-const Card = styled.div`
+const Card = styled(motion.div)`
   width: 200px;
   height: 300px;
   background-color: white;
@@ -17,6 +21,7 @@ const Card = styled.div`
   color: #eb5b00;
   border-radius: 10px;
 `;
+
 const Dot = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,14 +42,36 @@ const Dot = styled.div`
   }
 `;
 
+const cardVars = {
+  start: { scale: 0, opacity: 0 },
+  end: { scale: 1, opacity: 1, transition: { type: "tween" } },
+};
+
 function Cards() {
+  const minute = useRecoilValue(minuteState);
+  const second = useRecoilValue(secondState);
+
   return (
     <Wrapper>
-      <Card>25</Card>
+      <Card
+        key={"minute" + minute}
+        variants={cardVars}
+        initial="start"
+        animate="end"
+      >
+        {minute < 10 ? "0" + minute : minute}
+      </Card>
       <Dot />
-      <Card>00</Card>
+      <Card
+        key={"second" + second}
+        variants={cardVars}
+        initial="start"
+        animate="end"
+      >
+        {second === 60 ? "00" : second < 10 ? "0" + second : second}
+      </Card>
     </Wrapper>
   );
 }
 
-export default Cards;
+export default memo(Cards);

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Cards from "./components/Cards";
 import Btn from "./components/Btn";
 import RoundGoal from "./components/RoundGoal";
+import { RecoilRoot } from "recoil";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -18,12 +19,14 @@ const Heading = styled.h1`
 
 function App() {
   return (
-    <Wrapper>
-      <Heading>Pomodoro</Heading>
-      <Cards />
-      <Btn />
-      <RoundGoal />
-    </Wrapper>
+    <RecoilRoot>
+      <Wrapper>
+        <Heading>Pomodoro</Heading>
+        <Cards />
+        <Btn />
+        <RoundGoal />
+      </Wrapper>
+    </RecoilRoot>
   );
 }
 

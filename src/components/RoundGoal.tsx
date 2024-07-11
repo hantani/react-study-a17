@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { roundState, goalState } from "../atoms";
+import { useRecoilValue } from "recoil";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -24,14 +26,17 @@ const Title = styled.div`
 `;
 
 function RoundGoal() {
+  const round = useRecoilValue(roundState);
+  const goal = useRecoilValue(goalState);
+
   return (
     <Wrapper>
       <SmallWrapper>
-        <Numbers>0/4</Numbers>
+        <Numbers>{round}/4</Numbers>
         <Title>ROUND</Title>
       </SmallWrapper>
       <SmallWrapper>
-        <Numbers>0/12</Numbers>
+        <Numbers>{goal}/12</Numbers>
         <Title>GOAL</Title>
       </SmallWrapper>
     </Wrapper>
